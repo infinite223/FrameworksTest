@@ -1,0 +1,10 @@
+.renderPlan {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+
+    max-height: 600px;
+    overflow-y: auto;
+}
+
