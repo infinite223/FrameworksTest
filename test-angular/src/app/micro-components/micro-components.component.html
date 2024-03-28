@@ -1,0 +1,32 @@
+
+<div class="app">
+    <h2>Test Angular App</h2>
+    <p>Render components</p>
+    <input type="number" [(ngModel)]="rectsCount" placeholder="Podaj ilość komponentów" />
+    <div class="render-options">
+      <button class="render-button" (click)="startRenderRects()"> render</button>
+      <button class="render-button" (click)="resetTest()">Reset</button>
+      {{endTime}}
+      
+      {{ endTime$ | async  }}
+      <div *ngIf="endTime$ | async as end">
+        Czas renderowania: {{ ((end - startTime) / 1000).toFixed(4) }} s
+      </div>
+      | {{ rectsCount }} small rects
+      <div *ngIf="endTime$ | async as end">
+        one rect render time {{ ((end - startTime) / rectsCount / 1000).toFixed(5) }} s
+      </div>
+    </div>
+    <!-- [isRendering]="isRendering$ | async" -->
+    <app-render-plan
+     *ngIf="isRendering"
+      [timeRender]="timeRender"
+      [countRenderRects]="rectsCount"
+      [rects]="rects"
+      (setFinishRender)="setFinishRender($event)"
+    ></app-render-plan>
+    <!-- <app-render-plan /> -->
+
+  </div>
+
+

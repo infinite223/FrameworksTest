@@ -1,0 +1,17 @@
+.renderPlan {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.rect {
+    width: 5px;
+    height: 5px;
+
+    border: 1px solid white;
+    background-color: rgb(4, 138, 179);
+}
