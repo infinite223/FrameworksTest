@@ -1,6 +1,10 @@
-<!-- <app-rect/> -->
-
 <div class="renderPlan">
-    <div *ngFor="let rect of rects" class="rect"></div>
+    <div *ngIf="isRendering" class="content">
+        <div 
+            *ngFor="let rect of rects" class="rect" 
+            #rect
+            [style.height.px]="rectsSize"
+            [style.width.px]="rectsSize">
+        </div>
+    </div>
 </div>
-  

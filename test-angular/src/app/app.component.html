@@ -1,4 +1,22 @@
 <main class="main">
-  <app-micro-components/>
+  <!-- <app-micro-components/> -->
+  <nav>
+    <img src="../favicon.ico" class="angular-icon"/>
+    <h1>
+      Angular Test App
+    </h1>
+    <div class="options">
+      <div class="option">
+        <a routerLink="/micro-components" routerLinkActive="active" ariaCurrentWhenActive="page">Micro components</a>
+      </div>
+      <div class="option">
+        <a routerLink="/micro-components" routerLinkActive="active" ariaCurrentWhenActive="page">SVG render</a>
+      </div>
+    </div>
+  </nav>
+  <div class="content">
+
+    <router-outlet></router-outlet>
+  </div>
 </main> 
 

@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+    --baseColor: #DC0131;
+    --baseColorContent: #e8d4d8;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.angular-icon  {
+    width: 70px;
+}
+
+input {
+    border: none;
+    outline: none;
+
+    background-color: var(--baseColorContent);
+    border-radius: 5px;
+    padding: 7px 10px;
+}
+
+button {
+    border: none;
+    outline: none;
+
+    border-radius: 5px;
+    padding: 7px 10px;
+    cursor: pointer;
+}

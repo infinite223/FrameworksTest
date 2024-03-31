@@ -1,12 +1,39 @@
-.app {
+.micro-components {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    height: 100vh;
 }
 .render-options {
     display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.render-time {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+
+    color: gray;
+    font-size: 13px;
+}
+
+.render-button {
+    background-color: blueviolet;
+    color: white;
+}
+
+.reset-button {
+    background-color: var(--baseColor);
+    color: white;
+}
+
+.options-container {
+    display: flex;
     align-items: center;
     gap: 10px;
 }

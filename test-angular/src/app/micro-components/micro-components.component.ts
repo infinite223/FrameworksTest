@@ -3,16 +3,18 @@ import { RenderPlanComponent } from '../render-plan/render-plan.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgIf } from '@angular/common';
 import { BehaviorSubject, Observable, Observer, Subject, map, of, takeUntil, timer } from 'rxjs';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-micro-components',
   standalone: true,
-  imports: [RenderPlanComponent, FormsModule, NgIf, CommonModule],
+  imports: [RenderPlanComponent, FormsModule, NgIf, CommonModule, HeaderComponent],
   templateUrl: './micro-components.component.html',
   styleUrl: './micro-components.component.css'
 })
 export class MicroComponentsComponent {
   rectsCount: number = 100;
+  rectsSize: number = 5;
   isRendering: boolean = false;
   // isRendering$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -22,13 +24,8 @@ export class MicroComponentsComponent {
   startTime: number = 0;
   endTime: number = 0;
   reset: boolean = false;
-  endTime$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   private readonly destroy$: Subject<void> = new Subject<void>();
-
-  constructor(private zone: NgZone) {
-    this.endTime$
-  }
 
   startRenderRects(): void {
     let _rects = [];
@@ -46,9 +43,7 @@ export class MicroComponentsComponent {
 
   resetTest(): void {
     this.isRendering = false;
-    // this.isRendering$.next(false);
     this.finishRender = false;
-    this.endTime$.next(0);
     this.endTime = 0
     this.startTime = 0;
     this.rects = []
@@ -56,16 +51,10 @@ export class MicroComponentsComponent {
   }
 
   setFinishRender($event: number): void {
-        this.endTime = performance.now()
-      console.log("t2", performance.now())
-      // console.log($event)
-    // this.zone.runOutsideAngular(() => {
-    //   setTimeout(() => {
-    //     // this.$timer = of(performance.now())
-    //     console.log("t1",$event)
-    //     this.endTime = performance.now()
-    //   });
-    // });
+    setTimeout(() => {
+      this.endTime = performance.now()
+      console.log(performance.now())
+  }, 0);
   }
   generateRandomColor(): string {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);

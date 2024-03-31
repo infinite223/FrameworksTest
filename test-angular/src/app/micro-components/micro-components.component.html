@@ -1,32 +1,29 @@
 
-<div class="app">
-    <h2>Test Angular App</h2>
-    <p>Render components</p>
-    <input type="number" [(ngModel)]="rectsCount" placeholder="Podaj ilość komponentów" />
-    <div class="render-options">
-      <button class="render-button" (click)="startRenderRects()"> render</button>
-      <button class="render-button" (click)="resetTest()">Reset</button>
-      {{endTime}}
-      
-      {{ endTime$ | async  }}
-      <div *ngIf="endTime$ | async as end">
-        Czas renderowania: {{ ((end - startTime) / 1000).toFixed(4) }} s
+<div class="micro-components">
+    <app-header title="Micro components render test" message="Test polega na mierzeniu czasu renderowania się mikro komponentów w dowolnej ilości."/>
+    <div class="options-container">
+      <input type="number" [(ngModel)]="rectsCount" placeholder="Podaj ilość komponentów" />
+      <input type="number" [(ngModel)]="rectsSize" placeholder="Podaj rozmiar komponentów" />
+      <button class="render-button" (click)="startRenderRects()">Render</button>
+      <button class="reset-button" (click)="resetTest()">Reset</button>
+    </div>
+    <div class="render-time">
+      <div *ngIf="endTime">
+        Czas renderowania: {{ ((endTime - startTime) / 1000).toFixed(4) }} s
       </div>
-      | {{ rectsCount }} small rects
-      <div *ngIf="endTime$ | async as end">
-        one rect render time {{ ((end - startTime) / rectsCount / 1000).toFixed(5) }} s
+      <div *ngIf="endTime">
+      |  one rect render time {{ ((endTime - startTime) / rectsCount / 1000).toFixed(5) }} s
       </div>
     </div>
-    <!-- [isRendering]="isRendering$ | async" -->
+
     <app-render-plan
-     *ngIf="isRendering"
+      [isRendering]="isRendering"
       [timeRender]="timeRender"
       [countRenderRects]="rectsCount"
       [rects]="rects"
+      [rectsSize]="rectsSize"
       (setFinishRender)="setFinishRender($event)"
     ></app-render-plan>
-    <!-- <app-render-plan /> -->
-
   </div>
 
 
