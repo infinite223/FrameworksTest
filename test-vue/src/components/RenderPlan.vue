@@ -1,6 +1,6 @@
 <template>
   <div class="renderPlan">
-    <Rect v-for="rect in rects" :key="rect.id"/>
+    <Rect v-for="rect in rects" :key="rect.id" :rectsSize="props.rectsSize"/>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ interface RenderPlanProps {
   timeRender: number;
   rects: {id: number; bg: string}[];
   countRenderRects: number;
+  rectsSize: number
 }
 
 const props = defineProps<RenderPlanProps>();
@@ -21,14 +22,6 @@ const props = defineProps<RenderPlanProps>();
   }>()
 onMounted(() => {
   emit('setFinishRender')
-  // if (isRendering) {
-  //   const startTime = performance.now(); // Pobierz czas rozpoczęcia renderowania
-
-  //   const endTime = performance.now(); // Pobierz czas zakończenia renderowania
-  //   const timeDiff: number = endTime - startTime; // Oblicz różnicę czasu
-
-  //   setTimeRender(timeRender + timeDiff); // Zapisz różnicę czasu w stanie komponentu
-  // }
 });
 </script>
 
@@ -36,11 +29,13 @@ onMounted(() => {
 .renderPlan {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: calc(100% - 20px);
     height: auto;
 
-    max-height: 600px;
+    max-height: 400px;
     overflow-y: auto;
+
+    padding: 10px;
 }
 
 </style>

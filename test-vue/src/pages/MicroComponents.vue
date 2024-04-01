@@ -1,7 +1,10 @@
 <script lang="ts" setup>
     import { ref, watch, watchEffect, onMounted } from 'vue'
     import RenderPlan from '../components/RenderPlan.vue'
+    import Header from '../components/Header.vue'
+
     const rectsCount = ref(100)
+    const rectsSize = ref(5)
     const isRendering = ref(false)
     const timeRender = ref(0)
     const finishRender = ref(false)
@@ -80,13 +83,16 @@ const setFinishRender = () => {
 </script>
 
 <template>
-    <div class="app">
-      <h2>Test Vue App</h2>
-      <p>Render components</p>
-      <input type="number" v-model="rectsCount" placeholder="Podaj ilość komponentów" />
-      <div class="render-options">
-        <button class="render-button" @click="startRenderRects">{{ isRendering ? 'Stop' : 'Start' }} render</button>
-        <button class="render-button" @click="resetTest">Reset</button>
+    <div class="micro-components">
+    <Header title="Micro components render test" message="Test polega na mierzeniu czasu renderowania się mikro komponentów w dowolnej ilości.">
+     </Header> 
+     <div class="options-container">
+       <input type="number" v-model="rectsCount" placeholder="Podaj ilość komponentów" />
+       <input type="number" v-model="rectsSize" placeholder="Podaj wielkość komponentów" />
+       <button class="render-button" @click="startRenderRects">{{ isRendering ? 'Stop' : 'Start' }} render</button>
+        <button class="reset-button" @click="resetTest">Reset</button>
+      </div>  
+      <div class="render-time">
         <div v-if="endTime">
           Czas renderowania: {{ ((endTime - startTime) / 1000).toFixed(4) }} s
         </div>
@@ -99,6 +105,7 @@ const setFinishRender = () => {
         v-if="isRendering"
         :isRendering="isRendering"
         :timeRender="timeRender"
+        :rectsSize="rectsSize"
         :countRenderRects="rectsCount"
         :rects="rects"
         @setFinishRender="setFinishRender"
@@ -108,19 +115,44 @@ const setFinishRender = () => {
   
   
   <style scoped>
-  .app {
-    font-family: Arial, sans-serif;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .render-options {
-    margin-top: 10px;
-  }
-  .render-button {
-    margin-right: 10px;
-  }
+.micro-components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: 100vh;
+}
+.render-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.render-time {
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+
+    color: gray;
+    font-size: 13px;
+}
+
+.render-button {
+    background-color: blueviolet;
+    color: white;
+}
+
+.reset-button {
+    background-color: var(--baseColor);
+    color: white;
+}
+
+.options-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
   </style>
   
