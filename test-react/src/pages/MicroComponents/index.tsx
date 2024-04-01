@@ -1,8 +1,12 @@
 import {useEffect, useState} from "react";
 import RenderPlan from "../../components/RenderPlan";
+import {Header} from "../../components/Header";
+import "./microComponents.css";
 
 function MicroComponents() {
   const [rectsCount, setRectsCount] = useState(10000);
+  const [rectsSize, setRectsSize] = useState(5);
+
   const [isRendering, setIsRendering] = useState(false);
   const [timeRender, setTimeRender] = useState(0);
   const [countRenderRects, setCountRenderRects] = useState(0);
@@ -12,32 +16,54 @@ function MicroComponents() {
   const [endTime, setEndTime] = useState(0);
   const [reset, setReset] = useState(false);
 
-  useEffect(() => {
-    let _rects = [];
-    for (let i = 0; i < rectsCount; i++) {
-      const generateRandomColor = () => {
-        const randomColor =
-          "#" + Math.floor(Math.random() * 16777215).toString(16);
-        return randomColor;
-      };
-      const backgroundColor = generateRandomColor();
-      _rects.push({id: i, backgroundColor});
-      // setCountRenderRects(countRenderRects + 1);
-    }
+  // useEffect(() => {
+  //   let _rects = [];
+  //   for (let i = 0; i < rectsCount; i++) {
+  //     const generateRandomColor = () => {
+  //       const randomColor =
+  //         "#" + Math.floor(Math.random() * 16777215).toString(16);
+  //       return randomColor;
+  //     };
+  //     const backgroundColor = generateRandomColor();
+  //     _rects.push({id: i, backgroundColor});
+  //     // setCountRenderRects(countRenderRects + 1);
+  //   }
 
-    setRects(_rects);
-  }, [reset]);
+  //   setRects(_rects);
+  // }, [reset]);
 
-  useEffect(() => {
-    if (finishRender) {
-      setEndTime(performance.now());
-    }
-  }, [finishRender]);
+  // useEffect(() => {
+  //   if (finishRender) {
+  //     setEndTime(performance.now());
+  //   }
+  // }, [finishRender]);
 
   const startRenderRects = () => {
-    setIsRendering(!isRendering);
-    console.log(new Date());
-    setStartTime(performance.now());
+    // resetTest();
+    setRects([]);
+    setIsRendering(false);
+    setStartTime(0);
+    setEndTime(0);
+
+    setTimeout(() => {
+      let _rects = [];
+
+      for (let i = 0; i < rectsCount; i++) {
+        const generateRandomColor = () => {
+          const randomColor =
+            "#" + Math.floor(Math.random() * 16777215).toString(16);
+          return randomColor;
+        };
+        const backgroundColor = generateRandomColor();
+        _rects.push({id: i, backgroundColor});
+        // setCountRenderRects(countRenderRects + 1);
+      }
+
+      setRects(_rects);
+      setIsRendering(true);
+      setStartTime(performance.now());
+      console.log("start: ", performance.now());
+    }, 0);
   };
 
   const resetTest = () => {
@@ -45,27 +71,41 @@ function MicroComponents() {
     setFinishRender(false);
     setStartTime(0);
     setEndTime(0);
-    setReset(!reset);
+  };
+
+  const finishRendering = () => {
+    console.log("end: ", performance.now());
+    setEndTime(performance.now());
   };
 
   return (
-    <div className="app">
-      <h2>Test React App</h2>
-
-      <p>Render components</p>
-      <input
-        type="number"
-        value={rectsCount}
-        onChange={(text) => setRectsCount(parseInt(text.target.value))}
-        placeholder="Podaj ilość komponentów"
+    <div className="micro-components">
+      <Header
+        header="Micro components test"
+        title="Test polega na mierzeniu czasu renderowania się mikro komponentów w dowolnej ilości. "
       />
+
       <div className="render-options">
+        <input
+          type="number"
+          value={rectsCount}
+          onChange={(text) => setRectsCount(parseInt(text.target.value))}
+          placeholder="Podaj ilość komponentów"
+        />
+        <input
+          type="number"
+          value={rectsSize}
+          onChange={(text) => setRectsSize(parseInt(text.target.value))}
+          placeholder="Podaj rozmiar komponentów"
+        />
         <button className="render-button" onClick={startRenderRects}>
-          {isRendering ? "Stop" : "Start"} render
+          Render
         </button>
-        <button className="render-button" onClick={resetTest}>
+        <button className="reset-button" onClick={resetTest}>
           Reset
         </button>
+      </div>
+      <div className="render-time">
         {timeRender !== null && endTime && (
           <div>
             Czas renderowania: {((endTime - startTime) / 1000).toFixed(4)} s
@@ -84,7 +124,8 @@ function MicroComponents() {
           setTimeRender={setTimeRender}
           timeRender={timeRender}
           countRenderRects={countRenderRects}
-          setFinishRender={setFinishRender}
+          setFinishRender={finishRendering}
+          rectsSize={rectsSize}
           rects={rects}
         />
       )}

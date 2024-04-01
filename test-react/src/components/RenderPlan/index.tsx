@@ -9,20 +9,21 @@ interface RenderPlanProps {
   setTimeRender: (value: number) => void;
   rects: {id: number; bg: string}[];
   countRenderRects: number;
-  setFinishRender: (value: boolean) => void;
+  rectsSize: number;
+  setFinishRender: () => void;
 }
 const RenderPlan = ({
   isRendering,
   setTimeRender,
   timeRender,
+  rectsSize,
   rects,
   setFinishRender,
 }: RenderPlanProps) => {
   // const [rects, setRects] = useState<any>([]);
 
   useEffect(() => {
-    console.log(performance.now());
-    setFinishRender(true);
+    setFinishRender();
     // if (isRendering) {
     //   const startTime = performance.now(); // Pobierz czas rozpoczęcia renderowania
 
@@ -36,7 +37,9 @@ const RenderPlan = ({
   return (
     <div className="renderPlan">
       {rects.map((rect: any) => {
-        return <Rect key={rect.id} backgroundColor={rect.bg} />;
+        return (
+          <Rect key={rect.id} backgroundColor={rect.bg} rectsSize={rectsSize} />
+        );
       })}
     </div>
   );

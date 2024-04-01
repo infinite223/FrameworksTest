@@ -1,13 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
 :root {
-  margin: 0;
-  padding: 0;
+  --baseColor: #018fdc;
+  --baseColorContent: #e1ecf0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
 
-  color: rgb(36, 36, 36);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.icon  {
+  width: 70px;
+}
 
+input {
+  border: none;
+  outline: none;
+
+  background-color: var(--baseColorContent);
+  border-radius: 5px;
+  padding: 7px 10px;
+}
+
+button {
+  border: none;
+  outline: none;
+
+  border-radius: 5px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
