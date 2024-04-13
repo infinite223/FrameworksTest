@@ -14,7 +14,7 @@ const Home = () => {
             <Link to="/microComponents">Micro components</Link>
           </div>
           <div className="option">
-            <Link to="/svgRender">SVG render</Link>
+            <Link to="/SvgRender">SVG render</Link>
           </div>
         </div>
       </nav>

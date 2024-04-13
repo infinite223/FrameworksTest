@@ -14,32 +14,8 @@ function MicroComponents() {
   const [rects, setRects] = useState<any>([]);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
-  const [reset, setReset] = useState(false);
-
-  // useEffect(() => {
-  //   let _rects = [];
-  //   for (let i = 0; i < rectsCount; i++) {
-  //     const generateRandomColor = () => {
-  //       const randomColor =
-  //         "#" + Math.floor(Math.random() * 16777215).toString(16);
-  //       return randomColor;
-  //     };
-  //     const backgroundColor = generateRandomColor();
-  //     _rects.push({id: i, backgroundColor});
-  //     // setCountRenderRects(countRenderRects + 1);
-  //   }
-
-  //   setRects(_rects);
-  // }, [reset]);
-
-  // useEffect(() => {
-  //   if (finishRender) {
-  //     setEndTime(performance.now());
-  //   }
-  // }, [finishRender]);
 
   const startRenderRects = () => {
-    // resetTest();
     setRects([]);
     setIsRendering(false);
     setStartTime(0);
@@ -56,13 +32,11 @@ function MicroComponents() {
         };
         const backgroundColor = generateRandomColor();
         _rects.push({id: i, backgroundColor});
-        // setCountRenderRects(countRenderRects + 1);
       }
 
       setRects(_rects);
       setIsRendering(true);
       setStartTime(performance.now());
-      console.log("start: ", performance.now());
     }, 0);
   };
 
@@ -74,7 +48,6 @@ function MicroComponents() {
   };
 
   const finishRendering = () => {
-    console.log("end: ", performance.now());
     setEndTime(performance.now());
   };
 
