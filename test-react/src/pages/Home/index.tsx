@@ -16,6 +16,9 @@ const Home = () => {
           <div className="option">
             <Link to="/SvgRender">SVG render</Link>
           </div>
+          <div className="option">
+            <Link to="/FibGenerator">Fib Generator</Link>
+          </div>
         </div>
       </nav>
 
