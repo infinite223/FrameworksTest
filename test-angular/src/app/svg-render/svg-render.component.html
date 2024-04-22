@@ -1,0 +1,17 @@
+<div class="svgRender">
+    <app-header message="Test polega na wyrenderowaniu całej mapy w formacie SVG"
+                title="Svg render big map">
+    </app-header>
+    <div class="render-options">
+      <button class="render-button" (click)="startLoadingTimer()">Start render</button>
+      <button class="reset-button" (click)="handleReset()">Reset</button>
+    </div>
+    <div class="render-time">
+      <p *ngIf="loadingTime">Czas ładowania: {{ loadingTime?.toFixed(2) }} ms</p>
+    </div>
+  
+    <div class="mapContainer">
+      <img *ngIf="isRender" src="../../assets/map.svg" alt="map" class="map" (load)="handleLoad()" (loadstart)="startLoadingTimer()">
+    </div>
+  </div>
+  

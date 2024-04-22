@@ -1,0 +1,17 @@
+<div class="fib-generator">
+    <app-header title="Generation of a fiboonati sequence" message="Test polega na wyliczaniu kolejnych wyrazów ciągu fibonacciego i mierzeniu czasu."/>
+
+    <div class="render-options">
+      <label for="countInput">Ilość liczb:</label>
+      <input type="number" id="countInput" [(ngModel)]="count">
+      <button class="render-button" [disabled]="isCalculating" (click)="generateFibonacciSequence()">Start</button>
+      <button class="reset-button" [disabled]="isCalculating" (click)="handleReset()">Reset</button>
+    </div>
+    <div class="render-time">
+      <p *ngIf="loadingTime">Czas generowania: {{ loadingTime.toFixed(2) }} ms</p>
+    </div>
+    <div class="fib-numbers-container" *ngIf="fibonacciSequence.length > 0">
+      <p class="fib-number" *ngFor="let number of fibonacciSequence">{{ number }}</p>
+    </div>
+  </div>
+  

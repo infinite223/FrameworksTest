@@ -28,17 +28,23 @@ export class MicroComponentsComponent {
   private readonly destroy$: Subject<void> = new Subject<void>();
 
   startRenderRects(): void {
-    let _rects = [];
-    for (let i = 0; i < this.rectsCount; i++) {
-      const backgroundColor = this.generateRandomColor();
-      _rects.push({id: i, backgroundColor});
-    }
-    this.rects = _rects;
-    this.isRendering = true;
+    this.rects = []
+    this.isRendering = false;
+    this.endTime = 0
+    this.startTime = 0;
 
-    // this.isRendering$.next(true);
-    this.startTime = performance.now();
-    console.log("start: ", performance.now())
+    setTimeout(() => {
+      let _rects = [];
+      for (let i = 0; i < this.rectsCount; i++) {
+        const backgroundColor = this.generateRandomColor();
+        _rects.push({id: i, backgroundColor});
+      }
+      this.rects = _rects;
+      this.isRendering = true;
+  
+      // this.isRendering$.next(true);
+      this.startTime = performance.now();
+    }, 0)
   }
 
   resetTest(): void {
