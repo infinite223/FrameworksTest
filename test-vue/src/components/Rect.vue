@@ -1,6 +1,5 @@
 <script setup lang="ts">
   const props = defineProps<{rectsSize: number}>();
-  console.log(props.rectsSize)
 </script>
 
 <template>
@@ -8,13 +7,9 @@
   </template>
   
   <style scoped>
-  /* Zaimportuj arkusz stylów CSS, jeśli jest wymagany */
   .rect {
-    /* width: 5px;
-    height: 5px; */
-
     border: 1px solid white;
-    background-color: rgb(4, 138, 179);
+    background-color: var(--baseColor);
 }
   </style>
   

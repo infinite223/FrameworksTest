@@ -17,6 +17,9 @@
       <div class="option">
         <RouterLink to="/SvgRender">SVG render</RouterLink>
       </div>
+      <div class="option">
+        <RouterLink to="/FibGenerator">Fib generator</RouterLink>
+      </div>
     </div>
   </nav>
   <div class="content">

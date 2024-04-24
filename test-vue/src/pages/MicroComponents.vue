@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-    import { ref, watch, watchEffect, onMounted } from 'vue'
+    import { ref, onMounted } from 'vue'
     import RenderPlan from '../components/RenderPlan.vue'
     import Header from '../components/Header.vue'
 
@@ -16,25 +16,34 @@
 
 
     const startRenderRects = () => {
-      let _rects = []
-    for (let i = 0; i < rectsCount.value; i++) {
-      const generateRandomColor = () => {
-        const randomColor =
-          "#" + Math.floor(Math.random() * 16777215).toString(16);
-        return randomColor;
-      };
-      const backgroundColor = generateRandomColor();
-      _rects.push({id: i, backgroundColor});
-      // setCountRenderRects(countRenderRects + 1);
-    }
+      isRendering.value = false
+      rects.value = []
+      endTime.value = 0
+      startTime.value = 0
 
-    rects.value = _rects;
-      isRendering.value = true
-      // console.log("start" + performance.now())
-      startTime.value = performance.now()
+      setTimeout(() => {
+        let _rects = []
+        for (let i = 0; i < rectsCount.value; i++) {
+          const generateRandomColor = () => {
+            const randomColor =
+              "#" + Math.floor(Math.random() * 16777215).toString(16);
+            return randomColor;
+          };
+          const backgroundColor = generateRandomColor();
+          _rects.push({id: i, backgroundColor});
+          // setCountRenderRects(countRenderRects + 1);
+        }
+  
+      rects.value = _rects;
+        isRendering.value = true
+        startTime.value = performance.now()
+
+      }, 0)
+
     }
 
     const resetTest = () => {
+
       isRendering.value = false
       finishRender.value = false
       endTime.value = 0
@@ -58,26 +67,8 @@
     rects.value = _rects;
   });
 
-//   watch(rectsCount, (newX) => {
-//         let _rects = []
-//     for (let i = 0; i < newX; i++) {
-//       const generateRandomColor = () => {
-//         const randomColor =
-//           "#" + Math.floor(Math.random() * 16777215).toString(16);
-//         return randomColor;
-//       };
-//       const backgroundColor = generateRandomColor();
-//       _rects.push({id: i, backgroundColor});
-//       // setCountRenderRects(countRenderRects + 1);
-//     }
-
-//     rects.value = _rects;
-// })
-
-
 const setFinishRender = () => {
   endTime.value =  performance.now()
-  // isRendering.value = false
 }
 
 </script>
@@ -89,7 +80,7 @@ const setFinishRender = () => {
      <div class="options-container">
        <input type="number" v-model="rectsCount" placeholder="Podaj ilość komponentów" />
        <input type="number" v-model="rectsSize" placeholder="Podaj wielkość komponentów" />
-       <button class="render-button" @click="startRenderRects">{{ isRendering ? 'Stop' : 'Start' }} render</button>
+       <button class="render-button" @click="startRenderRects">Render</button>
         <button class="reset-button" @click="resetTest">Reset</button>
       </div>  
       <div class="render-time">
