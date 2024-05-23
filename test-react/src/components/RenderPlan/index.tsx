@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from "react";
+import {useEffect} from "react";
 import "./renderPlanStyles.css"; // Zaimportuj arkusz stylów CSS
 import Rect from "../Rect";
-import {Profiler as Profiler} from "react";
 
 interface RenderPlanProps {
   isRendering: boolean;
@@ -12,14 +11,7 @@ interface RenderPlanProps {
   rectsSize: number;
   setFinishRender: () => void;
 }
-const RenderPlan = ({
-  isRendering,
-  setTimeRender,
-  timeRender,
-  rectsSize,
-  rects,
-  setFinishRender,
-}: RenderPlanProps) => {
+const RenderPlan = ({rectsSize, rects, setFinishRender}: RenderPlanProps) => {
   // const [rects, setRects] = useState<any>([]);
 
   useEffect(() => {

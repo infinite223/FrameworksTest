@@ -1,13 +1,6 @@
-import React from "react";
 import "./rectStyles.css";
 
-const Rect = ({
-  backgroundColor,
-  rectsSize,
-}: {
-  backgroundColor: string;
-  rectsSize: number;
-}) => {
+const Rect = ({rectsSize}: {backgroundColor: string; rectsSize: number}) => {
   return (
     <div
       className="rect"

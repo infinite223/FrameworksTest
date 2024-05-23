@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import RenderPlan from "../../components/RenderPlan";
 import {Header} from "../../components/Header";
 import "./microComponents.css";
@@ -9,8 +9,8 @@ function MicroComponents() {
 
   const [isRendering, setIsRendering] = useState(false);
   const [timeRender, setTimeRender] = useState(0);
-  const [countRenderRects, setCountRenderRects] = useState(0);
-  const [finishRender, setFinishRender] = useState(false);
+  // const [countRenderRects, setCountRenderRects] = useState(0);
+  // const [finishRender, setFinishRender] = useState(false);
   const [rects, setRects] = useState<any>([]);
   const [startTime, setStartTime] = useState(0);
   const [endTime, setEndTime] = useState(0);
@@ -42,7 +42,7 @@ function MicroComponents() {
 
   const resetTest = () => {
     setIsRendering(false);
-    setFinishRender(false);
+    // setFinishRender(false);
     setStartTime(0);
     setEndTime(0);
   };
@@ -96,7 +96,7 @@ function MicroComponents() {
           isRendering={isRendering}
           setTimeRender={setTimeRender}
           timeRender={timeRender}
-          countRenderRects={countRenderRects}
+          countRenderRects={0}
           setFinishRender={finishRendering}
           rectsSize={rectsSize}
           rects={rects}
