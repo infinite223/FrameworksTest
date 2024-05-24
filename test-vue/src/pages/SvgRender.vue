@@ -1,13 +1,7 @@
 
 <script setup lang="ts">
 import Header from "../components/Header.vue";
-import { ref, Ref, onMounted, computed } from 'vue';
-
-interface LoadingTime {
-  loadingTime: Ref<number | null>;
-  startTime: Ref<number>;
-  isRender: Ref<boolean>;
-}
+import { ref, Ref } from 'vue';
 
 const loadingTime: Ref<number | null> = ref(null);
 const startTime: Ref<number> = ref(0);
@@ -34,9 +28,6 @@ const handleReset = () => {
     startLoadingTimer();
   }, 0);
 };
-
-// Loading time formatted to two decimal places
-const formattedLoadingTime = computed(() => loadingTime.value?.toFixed(2) ?? null);
 
 </script>
 

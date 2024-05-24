@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 import Header from "../components/Header.vue";
-import { ref, Ref, onMounted, computed } from 'vue';
+import { ref } from 'vue';
 
   const fibonacciSequence = ref<any>([]);
   const loadingTime = ref<any>(null);
@@ -34,9 +34,6 @@ import { ref, Ref, onMounted, computed } from 'vue';
     fibonacciSequence.value = []
     loadingTime.value = null
   };
-// Loading time formatted to two decimal places
-const formattedLoadingTime = computed(() => loadingTime.value?.toFixed(2) ?? null);
-
 </script>
 
 <template>
@@ -67,11 +64,13 @@ const formattedLoadingTime = computed(() => loadingTime.value?.toFixed(2) ?? nul
             `Czas generowania: ${{loadingTime.toFixed(2)}} 
         </p>
       </div>
-      <div v-if="fibonacciSequence.length > 0" v-for="(number, index) in fibonacciSequence" :key="index" className="fib-numbers-container">
-        <p className="fib-number" :key="index">
-          {{number}}
-        </p>
-      </div>
+      <div className="fib-numbers-container">
+        <div v-if="fibonacciSequence.length > 0" v-for="(number, index) in fibonacciSequence" :key="index">
+          <p className="fib-number" :key="index">
+            {{number}}
+          </p>
+        </div>
+        </div>
   </div>
 </template>
   
